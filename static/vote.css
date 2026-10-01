@@ -1,0 +1,28 @@
+body { background: var(--paper); }
+.ballot { min-height: 100vh; min-height: 100dvh; padding: clamp(18px, 2.6vh, 32px) clamp(18px, 3vw, 48px); border-top: 5px solid var(--ink); }
+.ballot-header { max-width: 1480px; margin: 0 auto; text-align: center; padding-bottom: clamp(16px, 2.4vh, 28px); }
+.ballot-header h1 { font: 600 clamp(24px, 2.1vw, 38px)/1.2 var(--serif); overflow-wrap: anywhere; }
+.ballot-header p { margin-top: var(--space-2); color: var(--muted); font-size: clamp(15px,1.1vw,20px); }
+.ballot-header h2 { margin-top: clamp(12px,2vh,24px); font-size: clamp(28px,2.7vw,48px); line-height: 1.2; font-weight: 650; overflow-wrap: anywhere; }
+.candidate-grid { --columns: 3; --photo-height: 340px; --gap: clamp(14px,1.8vw,28px); display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: var(--gap); max-width: 1480px; margin: 0 auto; }
+.candidate { flex: 0 0 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns)); min-width: 0; padding: 0; border: 1px solid var(--photo-line); border-bottom: 3px solid var(--ink); border-radius: var(--radius-small); background: var(--surface); color: var(--ink); text-align: center; overflow: hidden; transition: border-color var(--motion), transform var(--motion), background var(--motion); }
+.candidate:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.candidate:active:not(:disabled) { transform: scale(.985); }
+.candidate:disabled { opacity: .75; }
+.candidate-photo { width: 100%; height: var(--photo-height); font-size: clamp(36px,4vw,68px); }
+.candidate-meta { display: flex; flex-direction: column; justify-content: center; min-height: var(--meta-height,0px); padding: .8rem .65rem; }
+.candidate-name { display: block; font-size: clamp(20px,1.7vw,30px); line-height: 1.25; font-weight: 650; overflow-wrap: anywhere; }
+.candidate-detail { display: block; margin-top: .2rem; color: var(--muted); font-size: clamp(14px,1vw,18px); line-height: 1.3; overflow-wrap: anywhere; }
+.vote-error { width: fit-content; max-width: 100%; margin: var(--space-3) auto 0; padding: .6rem 1rem; background: var(--danger-soft); border: 1px solid var(--error-line); color: var(--danger); text-align: center; }
+.status-screen { position: fixed; inset: 0; display: grid; place-items: center; min-height: 100vh; min-height: 100dvh; padding: clamp(20px,4vw,64px); background: var(--paper); color: var(--ink); text-align: center; }
+.status-screen > div { max-width: 1300px; }
+.status-screen h1 { font-size: clamp(44px,7.4vw,140px); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
+.status-screen p { max-width: 560px; margin: var(--space-5) auto 0; font-size: clamp(17px,1.6vw,25px); line-height: 1.5; }
+.status-screen button { margin-top: var(--space-5); min-height: 48px; }
+.status-voted { background: var(--success); color: var(--surface); }
+.status-voted h1 { font-size: clamp(72px,11vw,200px); }
+.status-paused { background: var(--amber); color: var(--amber-ink); }
+.status-closed { background: var(--danger); color: var(--surface); }
+.status-error h1, .status-unconfirmed h1 { color: var(--danger); font-size: clamp(32px,5vw,76px); }
+.status-loading h1, .status-submitting h1, .status-setup h1 { font-size: clamp(36px,6vw,90px); }
+@media (max-width: 520px) { .ballot { padding-inline: var(--space-4); } .candidate-name { font-size: 23px; } }

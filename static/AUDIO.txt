@@ -1,0 +1,6 @@
+Place your confirmation MP3 in this folder with exactly the filename:
+
+vote.mp3
+
+The file is played only after the server confirms a vote. No admin audio
+uploader is provided. Voting still works when this file is missing or muted.

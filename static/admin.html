@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#182d40"><title>Election control</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/common.css"><link rel="stylesheet" href="/static/admin.css">
+  <script src="/static/common.js" defer></script><script src="/static/admin.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#control">Skip to election controls</a>
+  <header class="masthead"><div class="masthead-inner">
+    <div><p class="brand">School election</p><h1>Election control</h1><p id="header-school" class="masthead-school">Connecting to the server…</p></div>
+    <a class="button" href="/results" target="_blank" rel="noopener">Open results page <span aria-hidden="true">↗</span></a>
+  </div></header>
+  <nav class="section-nav" aria-label="Election administration"><div class="section-nav-inner">
+    <a href="#control">Controls</a><a href="#candidates">Candidates</a><a href="#setup">Setup</a><a href="#activity">Activity</a>
+    <span id="connection" class="connection" role="status">Connecting…</span>
+  </div></nav>
+  <main class="admin-main" id="admin-main" aria-busy="true">
+    <div id="connection-error" class="connection-error" role="alert" hidden></div>
+    <div class="control-grid">
+      <section id="control" class="panel control-panel" aria-labelledby="control-heading">
+        <div class="panel-label" id="control-heading">Election status</div>
+        <h2 id="state-title" class="state-title">Connecting…</h2>
+        <p id="state-description" class="state-description">Loading election controls.</p>
+        <div class="vote-counts" aria-label="Recorded votes">
+          <div><span class="count-label">Panel A <span id="total-a-title"></span></span><strong id="total-a">—</strong><span class="muted">votes recorded</span></div>
+          <div><span class="count-label">Panel B <span id="total-b-title"></span></span><strong id="total-b">—</strong><span class="muted">votes recorded</span></div>
+        </div>
+        <div class="control-actions" id="control-actions">
+          <button id="open-btn" class="button button-primary" disabled>Open voting</button>
+          <button id="pause-btn" class="button button-primary" hidden>Pause voting</button>
+          <button id="close-btn" class="button button-danger-outline" hidden>Close voting</button>
+          <button id="publish-btn" class="button button-primary" hidden>Publish results</button>
+          <button id="unpublish-btn" class="button" hidden>Unpublish results</button>
+        </div>
+      </section>
+      <section class="panel machines-panel" aria-labelledby="machines-heading">
+        <h2 id="machines-heading">Voting machines</h2><p class="section-copy">Open each address on its assigned computers.</p>
+        <div class="machine-link">
+          <div class="machine-heading"><strong>Panel A</strong><span id="online-a" class="muted">—</span></div>
+          <span id="machine-a-title" class="machine-role">Main role</span>
+          <div class="url-line"><a id="url-a" class="machine-url" href="/vote/a" target="_blank" rel="noopener">/vote/a</a><button class="button button-small" data-copy="url-a" aria-label="Copy Panel A voting address">Copy</button></div>
+        </div>
+        <div class="machine-link">
+          <div class="machine-heading"><strong>Panel B</strong><span id="online-b" class="muted">—</span></div>
+          <span id="machine-b-title" class="machine-role">Main role</span>
+          <div class="url-line"><a id="url-b" class="machine-url" href="/vote/b" target="_blank" rel="noopener">/vote/b</a><button class="button button-small" data-copy="url-b" aria-label="Copy Panel B voting address">Copy</button></div>
+        </div>
+        <div class="results-link"><span>Results</span><a id="url-results" class="machine-url" href="/results" target="_blank" rel="noopener">/results</a><button class="button button-small" data-copy="url-results" aria-label="Copy results address">Copy</button></div>
+      </section>
+    </div>
+    <section id="candidates" aria-labelledby="candidates-heading">
+      <div class="section-heading"><h2 id="candidates-heading">Candidates</h2><p id="candidate-lock" class="muted">Loading candidates…</p></div>
+      <div class="candidate-columns">
+        <section class="panel candidate-panel" aria-labelledby="panel-a-heading">
+          <div class="candidate-panel-top"><div><p class="panel-label">Panel A</p><h3 id="panel-a-heading">Main role</h3></div><button class="button button-small" data-add="a" disabled>Add candidate</button></div>
+          <p id="secondary-a" class="secondary-role"></p><div id="candidate-list-a" class="candidate-list"></div>
+        </section>
+        <section class="panel candidate-panel" aria-labelledby="panel-b-heading">
+          <div class="candidate-panel-top"><div><p class="panel-label">Panel B</p><h3 id="panel-b-heading">Main role</h3></div><button class="button button-small" data-add="b" disabled>Add candidate</button></div>
+          <p id="secondary-b" class="secondary-role"></p><div id="candidate-list-b" class="candidate-list"></div>
+        </section>
+      </div>
+    </section>
+    <section id="setup" class="panel setup-panel" aria-labelledby="setup-heading">
+      <div class="section-heading"><h2 id="setup-heading">Election setup</h2><span id="setup-status" class="muted" role="status">Available before voting opens</span></div>
+      <form id="settings-form"><fieldset id="settings-fields" disabled>
+        <div class="form-grid">
+          <label>School name<input id="school-name" name="schoolName" maxlength="100" required autocomplete="organization"></label>
+          <label>Election name <span class="optional">(optional)</span><input id="election-name" name="electionName" maxlength="100" autocomplete="off"></label>
+        </div>
+        <div class="role-settings">
+          <fieldset><legend>Panel A</legend><label>Main role<input id="panel-a-title" name="panelATitle" maxlength="60" required></label><label>Second-place role<input id="panel-a-runnerup" name="panelARunnerup" maxlength="60" required></label></fieldset>
+          <fieldset><legend>Panel B</legend><label>Main role<input id="panel-b-title" name="panelBTitle" maxlength="60" required></label><label>Second-place role<input id="panel-b-runnerup" name="panelBRunnerup" maxlength="60" required></label></fieldset>
+        </div>
+        <div class="form-footer"><p id="settings-error" class="error" role="alert" hidden></p><button id="save-settings" class="button button-primary" type="submit">Save setup</button></div>
+      </fieldset></form>
+    </section>
+    <div class="lower-grid" id="activity">
+      <section class="panel activity-panel"><details><summary>Recent activity</summary><div id="event-list" class="event-list"></div></details></section>
+      <section class="panel reset-panel" aria-labelledby="reset-heading"><div><h2 id="reset-heading">Reset votes</h2><p class="muted">Clear all votes and return to setup. Keep candidates and role names.</p></div><button id="reset-btn" class="button button-danger-outline" disabled>Reset votes</button></section>
+    </div>
+    <footer class="admin-footer"><span>School Election Web App</span><span>Administration on the server computer</span></footer>
+  </main>
+  <dialog id="candidate-dialog" aria-labelledby="candidate-dialog-title">
+    <form id="candidate-form">
+      <div class="dialog-heading"><h2 id="candidate-dialog-title">Add candidate</h2><button type="button" class="dialog-close" data-close="candidate-dialog" aria-label="Close candidate editor">×</button></div>
+      <input id="candidate-id" type="hidden">
+      <label>Panel<select id="candidate-panel" required><option value="a">Panel A</option><option value="b">Panel B</option></select></label>
+      <label>Candidate name<input id="candidate-name" maxlength="80" required autocomplete="off"></label>
+      <label>Class / section <span class="optional">(optional)</span><input id="candidate-detail" maxlength="60" autocomplete="off"></label>
+      <div class="photo-editor">
+        <div id="photo-preview" class="photo-preview" aria-label="Candidate photo preview"></div>
+        <div class="photo-fields"><label>Candidate photo<input id="candidate-photo" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"></label><p class="field-help">JPEG, PNG or WebP, up to 80 MB. Large photos are resized automatically.</p><label id="remove-photo-wrap" class="checkbox-label" hidden><input id="remove-photo" type="checkbox">Remove current photo</label></div>
+      </div>
+      <p id="candidate-error" class="error" role="alert" hidden></p>
+      <div class="dialog-actions"><button type="button" class="button" data-close="candidate-dialog">Cancel</button><button id="save-candidate" type="submit" class="button button-primary">Add candidate</button></div>
+    </form>
+  </dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+    <form id="confirm-form">
+      <div class="dialog-heading"><h2 id="confirm-title">Confirm action</h2><button type="button" class="dialog-close" data-close="confirm-dialog" aria-label="Cancel action">×</button></div>
+      <p id="confirm-message" class="dialog-copy"></p>
+      <label id="confirm-input-wrap" hidden><span id="confirm-input-label">Confirmation</span><input id="confirm-input" autocomplete="off" spellcheck="false"></label>
+      <div class="dialog-actions"><button type="button" id="confirm-cancel" class="button" data-close="confirm-dialog">Cancel</button><button id="confirm-action" type="submit" class="button button-primary">Confirm</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

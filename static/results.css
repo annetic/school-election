@@ -1,0 +1,54 @@
+.results-page { max-width: 1520px; margin: auto; padding: clamp(20px,2.5vw,40px); min-height: 100vh; min-height: 100dvh; }
+.results-header { text-align: center; border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink); padding: var(--space-5) 0; margin-bottom: var(--space-5); }
+.results-header h1 { font: 600 clamp(26px,2.3vw,44px)/1.25 var(--serif); overflow-wrap: anywhere; }
+.results-header p { margin-top: var(--space-2); font-size: clamp(15px,1.1vw,20px); color: var(--muted); }
+.results-header h2 { margin-top: var(--space-3); font-size: clamp(24px,1.9vw,36px); font-weight: 600; }
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px,2.4vw,36px); }
+.result-panel { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px,2vw,32px); }
+.result-panel-header { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--line); }
+.result-panel-header h3 { font-size: var(--text-md); font-weight: 600; }
+.result-panel-header p { font-size: var(--text-sm); color: var(--muted); }
+.role-card { padding: var(--space-4) 0; }
+.role-label { font-size: clamp(18px,1.4vw,24px); font-weight: 600; color: var(--accent); margin-bottom: var(--space-3); overflow-wrap: anywhere; }
+.person { display: flex; gap: var(--space-5); align-items: center; }
+.person-photo { width: clamp(116px,11vw,180px); aspect-ratio: 4 / 5; font-size: 2.2rem; }
+.person-info { min-width: 0; flex: 1; }
+.person-name { font-size: clamp(25px,2.1vw,40px); line-height: 1.2; font-weight: 650; overflow-wrap: anywhere; }
+.person-detail { color: var(--muted); font-size: var(--text-sm); margin-top: var(--space-2); }
+.person-votes { margin-top: var(--space-3); color: var(--ink); font-size: var(--text-md); font-variant-numeric: tabular-nums; }
+.secondary-card { border-top: 1px solid var(--line-soft); }
+.secondary-card .role-label { font-size: var(--text-md); margin-bottom: var(--space-2); }
+.secondary-card .person-photo { width: 76px; font-size: 1.3rem; }
+.secondary-card .person { gap: var(--space-4); }
+.secondary-card .person-name { font-size: clamp(21px,1.5vw,28px); }
+.secondary-card .person-votes { margin-top: var(--space-2); font-size: var(--text-sm); }
+.role-note { color: var(--muted); font-size: var(--text-sm); padding-block: var(--space-2); }
+.tie-heading { font-size: var(--text-md); font-weight: 600; color: var(--amber-ink); background: var(--amber-soft); border-left: 3px solid var(--amber-accent); padding: .6rem .8rem; margin-bottom: var(--space-3); }
+.tie-list { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.tie-list .person { align-items: flex-start; gap: var(--space-3); }
+.tie-list .person-photo { width: 64px; font-size: 1rem; }
+.tie-list .person-name { font-size: var(--text-lg); }
+.tie-list .person-votes { margin-top: var(--space-2); font-size: var(--text-sm); }
+.ranking { width: 100%; border-collapse: collapse; margin-top: var(--space-3); }
+.ranking caption { text-align: left; font-size: var(--text-md); font-weight: 600; padding: var(--space-3) 0; border-top: 1px solid var(--line); }
+.ranking th { text-align: left; font-size: var(--text-xs); color: var(--muted); font-weight: 500; padding: var(--space-2) var(--space-2); border-bottom: 1px solid var(--line); }
+.ranking td { padding: .7rem .5rem; border-bottom: 1px solid var(--line-soft); vertical-align: middle; font-size: var(--text-sm); }
+.ranking tbody tr:last-child td { border: 0; }
+.ranking th:first-child, .ranking td:first-child { padding-left: 0; width: 75px; font-variant-numeric: tabular-nums; }
+.ranking th:last-child, .ranking td:last-child { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ranking strong { font-weight: 600; overflow-wrap: anywhere; }
+.ranking .detail { display: block; color: var(--muted); font-size: var(--text-xs); }
+.rank-tie { display: block; color: var(--amber-text); font-size: var(--text-xs); }
+.results-status { min-height: 50vh; display: grid; place-items: center; text-align: center; }
+.results-status > div { max-width: 680px; padding: var(--space-6); }
+.results-status h3 { font-size: clamp(26px,3.2vw,48px); line-height: 1.25; font-weight: 600; }
+.results-status p { max-width: 520px; margin: var(--space-4) auto 0; color: var(--muted); font-size: var(--text-lg); }
+@media (min-width: 1600px) { .result-panel { padding: 28px 32px; } .ranking td { padding-block: .8rem; } }
+@media (max-width: 900px) { .results-grid { grid-template-columns: 1fr; } .person-photo { width: 150px; } .person-name { font-size: 30px; } }
+@media (max-width: 460px) {
+  .results-page { padding: var(--space-4); } .result-panel { padding: var(--space-4); }
+  .person { gap: var(--space-3); } .person-photo { width: 100px; } .person-name { font-size: 25px; }
+  .result-panel-header { flex-wrap: wrap; gap: var(--space-1); } .tie-list { grid-template-columns: 1fr; }
+  .ranking th:first-child, .ranking td:first-child { width: 50px; } .results-status > div { padding-inline: 0; }
+}
+@media print { body { background: var(--surface); } .results-page { padding: 0; } .results-grid { gap: 16px; } .result-panel { break-inside: avoid; } }

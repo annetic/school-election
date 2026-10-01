@@ -1,0 +1,13 @@
+.select-page { width: min(760px,100%); margin: 10vh auto; padding: var(--space-6); }
+.select-page header { border-top: 4px solid var(--ink); border-bottom: 1px solid var(--line); padding: var(--space-5) 0; }
+.select-page h1 { font: 600 clamp(26px,4vw,38px)/1.25 var(--serif); overflow-wrap: anywhere; }
+.select-page header p { margin-top: var(--space-2); }
+.select-page h2 { font-size: var(--text-lg); margin: var(--space-5) 0; }
+.panel-links { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.panel-links a { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5); background: var(--surface); border: 1px solid var(--line); border-bottom: 3px solid var(--ink); text-decoration: none; }
+.panel-links a:hover { background: var(--accent-soft); }
+.panel-links span { font-size: var(--text-sm); color: var(--muted); }
+.panel-links strong { font-size: var(--text-xl); overflow-wrap: anywhere; }
+.select-page footer { display: flex; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-5); font-size: var(--text-sm); }
+#select-error { margin-top: var(--space-4); }
+@media (max-width: 500px) { .panel-links { grid-template-columns: 1fr; } .select-page { padding: var(--space-4); margin-top: 5vh; } }

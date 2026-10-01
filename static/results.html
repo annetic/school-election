@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#182d40"><title>Election results</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/common.css"><link rel="stylesheet" href="/static/results.css">
+  <script src="/static/common.js" defer></script><script src="/static/results.js" defer></script>
+</head>
+<body>
+  <main class="results-page" id="results-page">
+    <header class="results-header"><h1 id="school-name"></h1><p id="election-name" hidden></p><h2 id="results-heading">Election results</h2></header>
+    <section id="results-status" class="results-status" role="status" aria-live="polite"><div><h3 id="status-title">Connecting…</h3><p id="status-copy">Waiting for the election server.</p></div></section>
+    <div id="results-grid" class="results-grid" hidden></div>
+  </main>
+</body>
+</html>

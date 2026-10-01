@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>School election</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/common.css"><link rel="stylesheet" href="/static/select.css">
+  <script src="/static/common.js" defer></script><script src="/static/select.js" defer></script>
+</head>
+<body>
+  <main class="select-page">
+    <header><h1 id="school-name">School election</h1><p id="election-name" class="muted"></p></header>
+    <h2>Choose a voting panel</h2>
+    <div class="panel-links"><a href="/vote/a"><span>Panel A</span><strong id="title-a">Voting panel A</strong></a><a href="/vote/b"><span>Panel B</span><strong id="title-b">Voting panel B</strong></a></div>
+    <p id="select-error" class="error" role="alert" hidden></p>
+    <footer><a href="/results">Election results</a><a id="admin-link" href="/admin" hidden>Election control</a></footer>
+  </main>
+</body>
+</html>

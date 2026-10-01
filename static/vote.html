@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f3f2ee"><title>Voting</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/common.css"><link rel="stylesheet" href="/static/vote.css">
+  <script src="/static/common.js" defer></script><script src="/static/vote.js" defer></script>
+</head>
+<body>
+  <main id="ballot" class="ballot" hidden>
+    <header class="ballot-header"><h1 id="school-name"></h1><p id="election-name"></p><h2 id="role-title"></h2></header>
+    <section id="candidate-grid" class="candidate-grid" aria-label="Candidates"></section>
+    <p id="vote-error" class="vote-error" role="alert" hidden></p>
+  </main>
+  <section id="status-screen" class="status-screen status-loading" role="status" aria-live="polite" aria-atomic="true">
+    <div><h1 id="status-title">CONNECTING</h1><p id="status-detail">Waiting for the election server.</p><button id="retry-vote" class="button button-primary" hidden>Retry saving this vote</button></div>
+  </section>
+</body>
+</html>
