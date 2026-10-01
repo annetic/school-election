@@ -1,0 +1,72 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare clean release
+        run: |
+          mkdir -p dist/base
+
+          rsync -a ./ dist/base/ \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "dist" \
+            --exclude "__pycache__" \
+            --exclude "*.pyc" \
+            --exclude "data/election.db" \
+            --exclude "data/election.db-wal" \
+            --exclude "data/election.db-shm"
+
+      - name: Build Windows release
+        run: |
+          mkdir -p dist/windows/School-Election
+          cp -a dist/base/. dist/windows/School-Election/
+
+          cd dist/windows
+          zip -r "../School-Election-${{ steps.version.outputs.VERSION }}-Windows.zip" School-Election
+
+      - name: Build Linux release
+        run: |
+          mkdir -p dist/linux/School-Election
+          cp -a dist/base/. dist/linux/School-Election/
+
+          chmod +x dist/linux/School-Election/start_server.sh
+
+          cd dist/linux
+          tar -czf "../School-Election-${{ steps.version.outputs.VERSION }}-Linux.tar.gz" School-Election
+
+      - name: Build macOS release
+        run: |
+          mkdir -p dist/macos/School-Election
+          cp -a dist/base/. dist/macos/School-Election/
+
+          chmod +x "dist/macos/School-Election/Start Election.command"
+
+          cd dist/macos
+          tar -czf "../School-Election-${{ steps.version.outputs.VERSION }}-macOS.tar.gz" School-Election
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/School-Election-${{ steps.version.outputs.VERSION }}-Windows.zip
+            dist/School-Election-${{ steps.version.outputs.VERSION }}-Linux.tar.gz
+            dist/School-Election-${{ steps.version.outputs.VERSION }}-macOS.tar.gz
