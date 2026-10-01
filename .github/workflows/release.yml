@@ -64,7 +64,7 @@ jobs:
             chmod +x "dist/macos/School-Election/Start Election.command"
 
             cd dist/macos
-            tar -czf "../School-Election-${{ steps.version.outputs.VERSION }}-macOS.tar.gz" School-Election
+            zip -r "../School-Election-${{ steps.version.outputs.VERSION }}-macOS.zip" School-Election
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
